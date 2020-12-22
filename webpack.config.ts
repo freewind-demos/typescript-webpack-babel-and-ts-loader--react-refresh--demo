@@ -25,11 +25,19 @@ const config: Configuration & any = {
                 '@babel/preset-react'
               ],
               plugins: [
-                require.resolve('react-refresh/babel')
+                // should comment this line, otherwise we will have error when modifying
+                // TypeError
+                // module.hot.invalidate is not a function
+                //
+                // require.resolve('react-refresh/babel')
               ]
             }
           },
-          {loader: 'ts-loader'}
+          {
+            loader: 'ts-loader', options: {
+              transpileOnly: true
+            }
+          }
         ]
       }]
   },
